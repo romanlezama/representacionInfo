@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Representación de información</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- jQuery -->
+	<script src="js/static/jquery.min.js"></script>
+	<!-- d3 -->
+	<link rel="stylesheet" type="text/css" href="css/static/d3_circulos.css">
+	<link rel="stylesheet" type="text/css" href="css/static/d3_wheel.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/static/bootstrap.min.css">
+	<script src="js/static/bootstrap.min.js"></script>
+	<!-- API Google Maps -->
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfh3yRJNJlVvu19On9SRleT6e6OBeO7cY&signed_in=true"></script>
+	<!-- Estilos propios -->
+	<link type="text/css" rel="stylesheet" href="css/estilos.css"/>
+	<link type="text/css" rel="stylesheet" href="css/wheel.css"/>
+</head>
+<body>
+	<div class="modal fade" tabindex="-1" role="dialog" id="formDialog">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Agregar Registro</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form class="form-horizontal">
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Colonia:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputColonia">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Delegación:</label>
+			    <div class="col-sm-10"> 
+			      <select class="form-control" id="inputDelegacion">
+			      	<option value="Álvaro Obregón">Álvaro Obregón</option>
+					<option value="Azcapotzalco">Azcapotzalco</option>
+					<option value="Benito Juárez">Benito Juárez</option>
+					<option value="Coyoacán">Coyoacán</option>
+					<option value="Cuajimalpa de Morelos">Cuajimalpa de Morelos</option>
+					<option value="Cuauhtémoc">Cuauhtémoc</option>
+					<option value="Gustavo A. Madero">Gustavo A. Madero</option>
+					<option value="Iztacalco">Iztacalco</option>
+					<option value="Iztapalapa">Iztapalapa</option>
+					<option value="Magdalena Contreras">Magdalena Contreras</option>
+					<option value="Miguel Hidalgo">Miguel Hidalgo</option>
+					<option value="Milpa Alta">Milpa Alta</option>
+					<option value="Tláhuac">Tláhuac</option>
+					<option value="Tlalpan">Tlalpan</option>
+					<option value="Venustiano Carranza">Venustiano Carranza</option>
+					<option value="Xochimilco">Xochimilco</option>
+			      </select>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Delitos cometidos:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputValor">
+			    </div>
+			  </div>
+			</form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	        <button type="button" class="btn btn-primary" id="addRegistro">Agregar</button>
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-8">
+				<table style="width: 100%;" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Colonia</th>
+							<th>Delegación</th>
+							<th>Delitos cometidos</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody id="elementos">
+						<tr>
+							<td>Del Valle</td>
+							<td>Benito Juárez</td>
+							<td>10</td>
+							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
+						</tr>
+						<tr>
+							<td>Narvarte</td>
+							<td>Benito Juárez</td>
+							<td>20</td>
+							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
+						</tr>
+						<tr>
+							<td>Polanco</td>
+							<td>Miguel Hidalgo</td>
+							<td>30</td>
+							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
+						</tr>
+					<tr><td>Florida</td><td>Álvaro Obregón</td><td>25</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Galeana</td><td>Álvaro Obregón</td><td>23</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Hidalgo</td><td>Álvaro Obregón</td><td>14</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Lomas de Sotelo</td><td>Miguel Hidalgo</td><td>24</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr></tbody>
+				</table>
+				<div style="margin-bottom: 10px;" id="tipoRespuesta">
+					<label class="custom-control custom-radio">
+						<input type="radio" name="tipoGrafico" class="custom-control-input" value="mapa">
+						<span class="custom-control-indicator"></span>
+  						<span class="custom-control-description">Mapa</span>
+					</label>
+					<label class="custom-control custom-radio">
+						<input type="radio" name="tipoGrafico" class="custom-control-input" value="circulos">
+						<span class="custom-control-indicator"></span>
+  						<span class="custom-control-description">Círculos</span>
+					</label>
+					<label class="custom-control custom-radio">
+						<input type="radio" name="tipoGrafico" class="custom-control-input" value="wheel">
+						<span class="custom-control-indicator"></span>
+  						<span class="custom-control-description">Wheel</span>
+					</label>
+				</div>
+				<button id="btnBuscar" class="btn btn-primary">Ver gráfico</button>
+				<button id="btnAdd" class="btn btn-success">Agregar registro</button>
+			</div>
+			<div id="resultado" class="resultado"></div
+		</div>
+	</div>
+	<script src="js/funciones.js"></script>
+	<script src="js/mapa.js"></script>
+	<!--<script src="js/static/d3.js"></script>-->
+	<script src="js/static/d3.layout.js"></script>
+	<script src="js/static/d3.v2.min.js"></script>
+	<script src="js/d3_circulos.js"></script>
+	<script src="js/d3_wheel.js"></script>
+</body>
+</html>
