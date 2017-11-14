@@ -63,6 +63,18 @@
 			      <input type="text" class="form-control" id="inputValor">
 			    </div>
 			  </div>
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Población:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputPoblacion">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label class="control-label col-sm-2">Año:</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputAnio" maxlength="4">
+			    </div>
+			  </div>
 			</form>
 	      </div>
 	      <div class="modal-footer">
@@ -82,6 +94,8 @@
 							<th>Colonia</th>
 							<th>Delegación</th>
 							<th>Delitos cometidos</th>
+							<th>Población</th>
+							<th>Año</th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
@@ -90,21 +104,67 @@
 							<td>Del Valle</td>
 							<td>Benito Juárez</td>
 							<td>10</td>
+							<td>1200</td>
+							<td>2000</td>
 							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
 						</tr>
 						<tr>
 							<td>Narvarte</td>
 							<td>Benito Juárez</td>
 							<td>20</td>
+							<td>1100</td>
+							<td>2001</td>
 							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
 						</tr>
 						<tr>
 							<td>Polanco</td>
 							<td>Miguel Hidalgo</td>
 							<td>30</td>
+							<td>2000</td>
+							<td>2002</td>
 							<td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td>
 						</tr>
-					<tr><td>Florida</td><td>Álvaro Obregón</td><td>25</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Galeana</td><td>Álvaro Obregón</td><td>23</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Hidalgo</td><td>Álvaro Obregón</td><td>14</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr><tr><td>Lomas de Sotelo</td><td>Miguel Hidalgo</td><td>24</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr></tbody>
+						<tr>
+							<td>Florida</td>
+							<td>Álvaro Obregón</td>
+							<td>25</td>
+							<td>1254</td>
+							<td>2003</td>
+							<td>
+								<button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Galeana</td>
+							<td>Álvaro Obregón</td>
+							<td>23</td>
+							<td>1558</td>
+							<td>2004</td>
+							<td>
+								<button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Hidalgo</td>
+							<td>Álvaro Obregón</td>
+							<td>14</td>
+							<td>2365</td>
+							<td>2005</td>
+							<td>
+								<button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button>
+							</td>
+						</tr>
+						<tr>
+							<td>Lomas de Sotelo</td>
+							<td>Miguel Hidalgo</td>
+							<td>24</td>
+							<td>4523</td>
+							<td>2006</td>
+							<td>
+								<button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button>
+							</td>
+						</tr>
+					</tbody>
 				</table>
 				<div style="margin-bottom: 10px;" id="tipoRespuesta">
 					<label class="custom-control custom-radio">

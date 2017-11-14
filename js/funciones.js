@@ -69,16 +69,18 @@ $("#addRegistro").click(function(){
 	var sColonia = $("#inputColonia").val();
 	var sDelegacion = $("#inputDelegacion").val();
 	var sDelito = $("#inputValor").val();
-	if( sColonia != "" && sDelegacion != "" && sDelito != "" ){
-		if( /^[[0-9]+$/i.test(sDelito) ){
-			$("#elementos").append('<tr><td>'+sColonia+'</td><td>'+sDelegacion+'</td><td>'+sDelito+'</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr>');
+	var sPoblacion = $("#inputPoblacion").val();
+	var sAnio = $("#inputAnio").val();
+	if( sColonia != "" && sDelegacion != "" && sDelito != "" && sPoblacion != "" && sAnio != "" ){
+		if( /^[[0-9]+$/i.test(sDelito) && /^[[0-9]+$/i.test(sPoblacion) && /^[[0-9]+$/i.test(sAnio) ){
+			$("#elementos").append('<tr><td>'+sColonia+'</td><td>'+sDelegacion+'</td><td>'+sDelito+'</td><td>'+sPoblacion+'</td><td>'+sAnio+'</td><td><button onclick="fnDelRow(this)" class="btn btn-danger btn-xs">Eliminar</button></td></tr>');
 			$("#inputColonia").val('');
 			$("#inputDelegacion").val('');
 			$("#inputValor").val('');
 			$("#formDialog").modal("hide");
 			$(".alert").alert('close');
 		} else {
-			$(".form-horizontal").before( fnAlerta( 'El campo "Delitos cometidos" debe ser solo números' ) );
+			$(".form-horizontal").before( fnAlerta( 'Los campos Delitos cometidos, Población y Año deben ser solo números' ) );
 		}
 	} else {
 		$(".form-horizontal").before( fnAlerta( 'Debe llenar todos los campos' ) );
