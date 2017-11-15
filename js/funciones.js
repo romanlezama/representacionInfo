@@ -56,6 +56,111 @@ $("#btnBuscar").click(function(){
 				$("#resultado").hide();
 				fnGraficarWheel();
 				break;
+			case "lineaTiempo":
+				d3.selectAll("svg > *").html('');
+				$("#resultado").hide();
+				fnGraphTimeLine(
+					[
+						{
+							"colonia": "Del Valle",
+							"delegacion": "Benito Juárez",
+							"poblacion": [
+								[
+									1820,
+									381000000
+								],
+								[
+									1821,
+									383711494
+								],
+								[
+									1822,
+									386442286
+								],
+								[
+									1823,
+									389192512
+								],
+								[
+									1824,
+									391962310
+								]
+							],
+							"delitos": [
+								[
+									1800,
+									32
+								],
+								[
+									1850,
+									32
+								],
+								[
+									1856,
+									26
+								],
+								[
+									1864,
+									31
+								],
+								[
+									1871,
+									32
+								]
+							]
+						},
+						{
+							"colonia": "Florida",
+							"delegacion": "Álvaro Obregón",
+							"poblacion": [
+								[
+									1820,
+									24905000
+								],
+								[
+									1821,
+									25260000
+								],
+								[
+									1822,
+									25620000
+								],
+								[
+									1823,
+									25969000
+								],
+								[
+									1824,
+									26307000
+								]
+							],
+							"delitos": [
+								[
+									1800,
+									38.37
+								],
+								[
+									1875,
+									38.37
+								],
+								[
+									1885,
+									39.44
+								],
+								[
+									1895,
+									42.38
+								],
+								[
+									1905,
+									45.45
+								]
+							]
+						}
+					]
+					);
+
+				break;
 			default: break;
 		}
 	}

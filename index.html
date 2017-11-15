@@ -9,6 +9,7 @@
 	<!-- d3 -->
 	<link rel="stylesheet" type="text/css" href="css/static/d3_circulos.css">
 	<link rel="stylesheet" type="text/css" href="css/static/d3_wheel.css">
+	<link rel="stylesheet" type="text/css" href="css/static/d3_lineaTiempo.css">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/static/bootstrap.min.css">
 	<script src="js/static/bootstrap.min.js"></script>
@@ -182,6 +183,15 @@
 						<span class="custom-control-indicator"></span>
   						<span class="custom-control-description">Wheel</span>
 					</label>
+
+
+					<label class="custom-control custom-radio">
+						<input type="radio" name="tipoGrafico" class="custom-control-input" value="lineaTiempo">
+						<span class="custom-control-indicator"></span>
+  						<span class="custom-control-description">Linea de Tiempo</span>
+					</label>
+
+
 				</div>
 				<button id="btnBuscar" class="btn btn-primary">Ver gráfico</button>
 				<button id="btnAdd" class="btn btn-success">Agregar registro</button>
@@ -196,5 +206,6 @@
 	<script src="js/static/d3.v2.min.js"></script>
 	<script src="js/d3_circulos.js"></script>
 	<script src="js/d3_wheel.js"></script>
+	<script src="js/d3_lineaTiempo.js"></script>
 </body>
 </html>
