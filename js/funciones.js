@@ -29,8 +29,48 @@ function fnGeneraJsonDesdeTabla(){
 			"children": oVal.children
 		});
 	});
-	console.log(JSON.stringify(jGeneral));
+	console.log(jGeneral);
 	return jGeneral;
+}
+
+function fnGeneraJsonDesdeTabla_lineaTiempo(){
+	var aJsonGeneral = [];
+	var tempJsonColonia = {};
+	$("#elementos tr").each(function(){
+		var sInputColonia = $(this).find('td:eq(0)').text();
+		var sInputDelegacion = $(this).find('td:eq(1)').text();
+		var sInputDelitos = $(this).find('td:eq(2)').text();
+		var sInputPoblacion = $(this).find('td:eq(3)').text();
+		var sInputAnio = $(this).find('td:eq(4)').text();
+		//if( aJsonGeneral.length == 0 ){
+			/*aJsonGeneral.push({
+				"colonia": sInputColonia,
+				"delegacion": sInputDelegacion,
+				"poblacion": [ [ sInputAnio, sInputPoblacion ] ],
+				"delitos": [ [ sInputAnio, sInputDelitos ] ]
+			});*/
+		//}
+		/*for( var i=0; i<aJsonGeneral.length; i++ ){
+			var pos = aJsonGeneral[i];
+			if( pos.colonia == sInputColonia && pos.delegacion == sInputDelegacion ){
+				pos.poblacion.push( [ sInputAnio, sInputPoblacion ] );
+				pos.delitos.push( [ sInputAnio, sInputDelitos ] );
+			} else{
+				aJsonGeneral.push({
+					"colonia": sInputColonia,
+					"delegacion": sInputDelegacion,
+					"poblacion": [ [ sInputAnio, sInputPoblacion ] ],
+					"delitos": [ [ sInputAnio, sInputDelitos ] ]
+				});
+			}
+		}*/
+		/*if( typeof tempJsonColonia[ sInputColonia ] == "undefined" ){
+			tempJsonColonia[ sInputColonia ] = { "poblacion": [], "delitos": [] };
+		}
+		tempJsonColonia[ sInputColonia ].poblacion.push([ sInputAnio, sInputPoblacion ]);
+		tempJsonColonia[ sInputColonia ].delitos.push([ sInputAnio, sInputDelitos ]);*/
+	});
+	console.log(aJsonGeneral);
 }
 
 $("#btnBuscar").click(function(){
@@ -59,7 +99,8 @@ $("#btnBuscar").click(function(){
 			case "lineaTiempo":
 				d3.selectAll("svg > *").html('');
 				$("#resultado").hide();
-				fnGraphTimeLine(
+				fnGeneraJsonDesdeTabla_lineaTiempo();
+				/*fnGraphTimeLine(
 					[
 						{
 							"colonia": "Del Valle",
@@ -158,7 +199,7 @@ $("#btnBuscar").click(function(){
 							]
 						}
 					]
-					);
+					);*/
 
 				break;
 			default: break;
