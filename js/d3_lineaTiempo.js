@@ -32,7 +32,7 @@ function fnGraphTimeLine( data ){
 	 */
 	function x( d ){ return d.anio; } // Devuelve el valor del año de un punto dado
 	function y( d ){ return d.delitos; }
-	function radius( d ){ return d.poblacion; }
+	function radius( d ){ return (d.poblacion*10000); }
 	function key( d ){ return d.colonia; }
 	function color( d ){ return d.delegacion; } // Devuelve la región para pintarla de un color
 
@@ -231,106 +231,3 @@ function fnGraphTimeLine( data ){
 		return a[1];
 	}
 }
-
-/*fnGraphTimeLine(
-
-[
-	{
-		"colonia": "Del Valle",
-		"delegacion": "Benito Juárez",
-		"poblacion": [
-			[
-				1820,
-				381000000
-			],
-			[
-				1821,
-				383711494
-			],
-			[
-				1822,
-				386442286
-			],
-			[
-				1823,
-				389192512
-			],
-			[
-				1824,
-				391962310
-			]
-		],
-		"delitos": [
-			[
-				1800,
-				32
-			],
-			[
-				1850,
-				32
-			],
-			[
-				1856,
-				26
-			],
-			[
-				1864,
-				31
-			],
-			[
-				1871,
-				32
-			]
-		]
-	},
-	{
-		"colonia": "Florida",
-		"delegacion": "Álvaro Obregón",
-		"poblacion": [
-			[
-				1820,
-				24905000
-			],
-			[
-				1821,
-				25260000
-			],
-			[
-				1822,
-				25620000
-			],
-			[
-				1823,
-				25969000
-			],
-			[
-				1824,
-				26307000
-			]
-		],
-		"delitos": [
-			[
-				1800,
-				38.37
-			],
-			[
-				1875,
-				38.37
-			],
-			[
-				1885,
-				39.44
-			],
-			[
-				1895,
-				42.38
-			],
-			[
-				1905,
-				45.45
-			]
-		]
-	}
-]
-
-);*/
