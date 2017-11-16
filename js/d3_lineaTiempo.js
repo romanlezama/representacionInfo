@@ -131,7 +131,7 @@ function fnGraphTimeLine( data ){
 	// Se agrega un título
 	dot.append( "title" )
 		.text( function(d){ 
-			return d.colonia; 
+			return d.colonia+', '+d.delegacion; 
 		} );
 
 	// Agregar una cubierta para la etiqueta del año
@@ -208,11 +208,20 @@ function fnGraphTimeLine( data ){
 	function interpolateData( year ){
 		return data.map( function( d ){
 			// d contiene el json de cada posición en el arreglo 
+			/**
+			 * Busco el año máximo de cada punto para que no siga corriendo en la linea
+			 */
+			var anioMaximo;
+			var oMinMaxDel = minMaxArray( d.delitos );
+			var oMinMaxPob = minMaxArray( d.poblacion );
+			var tempMax = ( oMinMaxDel.max > oMinMaxPob.max ) ? oMinMaxDel.max : oMinMaxPob.max;
+			anioMaximo = ( anioMaximo > tempMax ) ? anioMaximo : tempMax;
+			// Termino la búsqueda del año máximo
 			return {
 				colonia: d.colonia,
 				delegacion: d.delegacion,
 				//income: interpolateValues( d.income, year ),
-				anio: year,
+				anio: (year<anioMaximo?year:anioMaximo),
 				poblacion: interpolateValues( d.poblacion, year ),
 				delitos: interpolateValues( d.delitos, year )
 			};
