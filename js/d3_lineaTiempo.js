@@ -60,7 +60,7 @@ function fnGraphTimeLine( data ){
 	/** 
 	 * Crear el contenedor SVG y establece el origen
 	 */
-	var svg = d3.select( "body" ).append( "svg" )
+	var svg = d3.select( "#divLineaTiempo" ).append( "svg" )
 			.attr( "width", width + margin.left + margin.right )
 			.attr( "height", height + margin.top + margin.bottom )
 		.append( "g" )

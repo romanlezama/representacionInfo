@@ -15,7 +15,7 @@ function fnGraphCirculo( data ){
       .size([r, r])
       .value(function(d) { return d.size; })
 
-  var vis = d3.select("body").insert("svg:svg", "h2")
+  var vis = d3.select("#divCirculo").insert("svg:svg", "h2")
       .attr("width", "100%")
       .attr("height", "100%")
     .append("svg:g")

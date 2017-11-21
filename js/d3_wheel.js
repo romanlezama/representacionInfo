@@ -9,7 +9,7 @@ function fnWheel(json) {
       y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]),
       padding = 5,
       duration = 1000;
-  var div = d3.select("body");
+  var div = d3.select("#divWheel");
   var vis = div.append("svg")
         .attr("width", width + padding * 2)
         .attr("height", height + padding * 2)
