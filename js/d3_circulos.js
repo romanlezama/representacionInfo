@@ -1,4 +1,4 @@
-function fnGraphCirculo( data ){
+function fnGraphCirculo( data, sDiv ){
 
 
 
@@ -15,7 +15,7 @@ function fnGraphCirculo( data ){
       .size([r, r])
       .value(function(d) { return d.size; })
 
-  var vis = d3.select("#divCirculo").insert("svg:svg", "h2")
+  var vis = d3.select(sDiv).insert("svg:svg", "h2")
       .attr("width", "100%")
       .attr("height", "100%")
     .append("svg:g")
@@ -94,5 +94,5 @@ function fnGraphCirculo( data ){
 }
 
 function fnGraficar(){
-  fnGraphCirculo( fnGeneraJsonDesdeTabla() );
+  fnGraphCirculo( fnGeneraJsonDesdeTabla(), "#divCirculo" );
 }

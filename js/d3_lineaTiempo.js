@@ -1,4 +1,4 @@
-function fnGraphTimeLine( data ){
+function fnGraphTimeLine( data, sDiv ){
 
 	/**
 	 * Encuentro el año menor y el mayor de todo el array para establecer los rangos del gráfico
@@ -60,7 +60,7 @@ function fnGraphTimeLine( data ){
 	/** 
 	 * Crear el contenedor SVG y establece el origen
 	 */
-	var svg = d3.select( "#divLineaTiempo" ).append( "svg" )
+	var svg = d3.select( sDiv ).append( "svg" )
 			.attr( "width", width + margin.left + margin.right )
 			.attr( "height", height + margin.top + margin.bottom )
 		.append( "g" )

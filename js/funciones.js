@@ -71,40 +71,23 @@ function fnGeneraJsonDesdeTabla_lineaTiempo(){
 			}
 		}
 	});
-	fnGraphTimeLine( aFinal );
+	fnGraphTimeLine( aFinal, "#divLineaTiempo" );
 }
 
-$("#btnBuscar").click(function(){
-	var sTipo = $("input[name=tipoGrafico]:checked").val();
-	if( typeof sTipo == "undefined" ){
-		$("#tipoRespuesta").before( fnAlerta("Debe seleccionar un tipo de respuesta") );
-	} else {
-		$(".alert").alert('close');
-		$("#resultado").html('');
-		switch( sTipo ){
-			case "mapa":
-				d3.selectAll("svg > *").html('');
-				$("#resultado").show();
-				fnCargarMapa();
-				break;
-			case "circulos":
-				d3.selectAll("svg > *").html('');
-				$("#resultado").hide();
-				fnGraficar();
-				break;
-			case "wheel":
-				d3.selectAll("svg > *").html('');
-				$("#resultado").hide();
-				fnGraficarWheel();
-				break;
-			case "lineaTiempo":
-				d3.selectAll("svg > *").html('');
-				$("#resultado").hide();
-				fnGeneraJsonDesdeTabla_lineaTiempo();
-				break;
-			default: break;
-		}
-	}
+$("#btnMapa").click(function(){
+	var etop = $('#resultado').offset().top;
+	$(window).scrollTop(etop);
+	fnCargarMapa();
+});
+
+$("#btnGraficos").click(function(){
+	d3.selectAll("svg > *").html('');
+	$("#divCirculo").html('');
+	$("#divWheel").html('');
+	$("#divLineaTiempo").html('');
+	fnGraficar();
+	fnGraficarWheel();
+	fnGeneraJsonDesdeTabla_lineaTiempo();
 });
 
 $("#btnAdd").click(function(){

@@ -197,41 +197,20 @@
 
 					</tbody>
 				</table>
-				<div style="margin-bottom: 10px;" id="tipoRespuesta">
-					<label class="custom-control custom-radio">
-						<input type="radio" name="tipoGrafico" class="custom-control-input" value="mapa">
-						<span class="custom-control-indicator"></span>
-  						<span class="custom-control-description">Mapa</span>
-					</label>
-					<label class="custom-control custom-radio">
-						<input type="radio" name="tipoGrafico" class="custom-control-input" value="circulos">
-						<span class="custom-control-indicator"></span>
-  						<span class="custom-control-description">Círculos</span>
-					</label>
-					<label class="custom-control custom-radio">
-						<input type="radio" name="tipoGrafico" class="custom-control-input" value="wheel">
-						<span class="custom-control-indicator"></span>
-  						<span class="custom-control-description">Wheel</span>
-					</label>
-
-
-					<label class="custom-control custom-radio">
-						<input type="radio" name="tipoGrafico" class="custom-control-input" value="lineaTiempo">
-						<span class="custom-control-indicator"></span>
-  						<span class="custom-control-description">Linea de Tiempo</span>
-					</label>
-
-
-				</div>
-				<button id="btnBuscar" class="btn btn-primary">Ver gráfico</button>
+				<button id="btnGraficos" class="btn btn-primary">Gráficos</button>
+				<button id="btnMapa" class="btn btn-primary">Mapa</button>
 				<button id="btnAdd" class="btn btn-success">Agregar registro</button>
 			</div>
-			<div id="resultado" class="resultado"></div
 		</div>
 	</div>
-	<div id="divCirculo"></div>
-	<div id="divWheel"></div>
-	<div id="divLineaTiempo"></div>
+	<div class="row">
+		<div class="col-md-6" style="height: 800px;" id="divCirculo"></div>
+		<div class="col-md-6" id="divWheel"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" id="divLineaTiempo"></div>
+	</div>
+	<div class="row"><div id="resultado" class="resultado"></div></div>
 	<script src="js/funciones.js"></script>
 	<script src="js/mapa.js"></script>
 	<!--<script src="js/static/d3.js"></script>-->

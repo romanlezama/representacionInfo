@@ -1,4 +1,4 @@
-function fnWheel(json) {
+function fnWheel(json, sDiv) {
 
 
 
@@ -9,7 +9,7 @@ function fnWheel(json) {
       y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]),
       padding = 5,
       duration = 1000;
-  var div = d3.select("#divWheel");
+  var div = d3.select(sDiv);
   var vis = div.append("svg")
         .attr("width", width + padding * 2)
         .attr("height", height + padding * 2)
@@ -155,5 +155,5 @@ function fnWheel(json) {
 function fnGraficarWheel(){
   var aTemp = [];
   aTemp.push( fnGeneraJsonDesdeTabla() );
-  fnWheel( aTemp );
+  fnWheel( aTemp, "#divWheel" );
 }
