@@ -124,7 +124,10 @@ function fnGraphTimeLine( data, sDiv ){
 			.data( interpolateData( anioMinino ) )
 		.enter().append( "circle" )
 			.attr( "class", "dot" )
-			.style( "fill", function( d ){ return colorScale( color( d ) ); } )
+			.style( "fill", function( d ){ 
+				
+				return colorScale( color( d ) ); 
+			} )
 			.call( position )
 			.sort( order );
 
@@ -133,6 +136,18 @@ function fnGraphTimeLine( data, sDiv ){
 		.text( function(d){ 
 			return d.colonia+', '+d.delegacion; 
 		} );
+
+	// Agrego una imagen
+	var img = svg.selectAll("nodes")
+			.data( interpolateData( anioMinino ) )
+		.enter().append("svg:image")
+			.attr("xlink:href", function(d){return d.image;})
+			.call( position_img );
+
+	img.append("title")
+		.text(function(d){
+			return d.colonia+', '+d.delegacion;
+		});
 
 	// Agregar una cubierta para la etiqueta del año
 	var box = label.node().getBBox();
@@ -153,9 +168,26 @@ function fnGraphTimeLine( data, sDiv ){
 
 	// Posiciones de los puntos basado en los datos. Recibe un array con los círculos generados para cada punto.
 	function position( dot ){
-		dot .attr( "cx", function( d ){ return xScale( x(d) ); } )
-			.attr( "cy", function( d ){ return yScale( y(d) ); } )
-			.attr( "r", function( d ){ return radiusScale( radius(d) ); } );
+		dot .attr( "cx", function( d ){ 
+				
+				//return xScale( x(d) ); 
+				return (d.image)?0:xScale( x(d) );
+			} )
+			.attr( "cy", function( d ){ 
+				//return yScale( y(d) ); 
+				return (d.image)?0:yScale( y(d) );
+			} )
+			.attr( "r", function( d ){ 
+				//return radiusScale( radius(d) ); 
+				return (d.image)?0:radiusScale( radius(d) );
+			} );
+	}
+
+	function position_img(dot){
+		dot .attr( "x", function( d ){ return xScale( x(d) ); } )
+			.attr( "y", function( d ){ return yScale( y(d) ); } )
+			.attr( "width", function( d ){ return radiusScale( radius(d) )*2.5; } )
+			.attr( "height", function( d ){ return radiusScale( radius(d) )*2.5; } );
 	}
 
 	// Define un orden de clasificación para que los puntos más pequeños se dibujen en la parte superior
@@ -201,6 +233,7 @@ function fnGraphTimeLine( data, sDiv ){
 	// Actualiza la pantalla para mostrar el año especificado
 	function displayYear( year ){
 		dot.data( interpolateData( year ), key ).call( position ).sort( order );
+		img.data( interpolateData( year ), key ).call( position_img ).sort( order );
 		label.text( Math.round( year ) );
 	}
 
@@ -220,6 +253,7 @@ function fnGraphTimeLine( data, sDiv ){
 			return {
 				colonia: d.colonia,
 				delegacion: d.delegacion,
+				image: d.image,
 				//income: interpolateValues( d.income, year ),
 				anio: (year<anioMaximo?year:anioMaximo),
 				poblacion: interpolateValues( d.poblacion, year ),

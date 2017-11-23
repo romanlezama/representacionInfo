@@ -43,7 +43,7 @@ function fnGeneraJsonDesdeTabla_lineaTiempo(){
 		var sInputPoblacion = $(this).find('td:eq(3)').text();
 		var sInputAnio = $(this).find('td:eq(4)').text();
 		// Creo un json temporal agrupando las colonias en su delegación correspondiente
-		var jColonia = { "name": sInputColonia, "anio": parseInt( sInputAnio ), "delitos": parseInt( sInputDelitos ), "poblacion": parseInt( sInputPoblacion ) };
+		var jColonia = { "name": sInputColonia, "anio": parseInt( sInputAnio ), "delitos": parseInt( sInputDelitos ), "poblacion": parseInt( sInputPoblacion ), "image": "img/soccer.png" };
 		if( typeof tempJsonDelegaciones[ sInputDelegacion] == "undefined" ){
 			tempJsonDelegaciones[ sInputDelegacion ] = { "colonias": []};
 		}
@@ -58,19 +58,25 @@ function fnGeneraJsonDesdeTabla_lineaTiempo(){
 		}
 		return -1;
 	};
+	var oImgXDelegacion = {
+		"Benito Juárez": "img/soccer.png",
+		"Álvaro Obregón": "img/coffee.png",
+		"Miguel Hidalgo": "img/grape.png"
+	};
 	$.each(tempJsonDelegaciones, function(sDelegacion, oColonias){
 		var aColonias = oColonias.colonias;
 		for(var i=0; i<aColonias.length; i++){
 			var colonia = aColonias[i];
 			var posColonia = fnGetPosColonia( aFinal, colonia.name, sDelegacion );
 			if( posColonia == -1 ){
-				aFinal.push({colonia: colonia.name, delegacion: sDelegacion, poblacion: [[colonia.anio, colonia.poblacion]], delitos:[[colonia.anio, colonia.delitos]]});
+				aFinal.push({colonia: colonia.name, delegacion: sDelegacion, poblacion: [[colonia.anio, colonia.poblacion]], delitos:[[colonia.anio, colonia.delitos]], image: oImgXDelegacion[sDelegacion]});
 			} else{
 				aFinal[ posColonia ].poblacion.push([colonia.anio, colonia.poblacion]);
 				aFinal[ posColonia ].delitos.push([colonia.anio, colonia.delitos]);
 			}
 		}
 	});
+	console.log(aFinal);
 	fnGraphTimeLine( aFinal, "#divLineaTiempo" );
 }
 
